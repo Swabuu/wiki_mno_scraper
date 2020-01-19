@@ -7,8 +7,12 @@ emea = 'https://en.wikipedia.org/wiki/List_of_mobile_network_operators_of_the_Mi
 europe = 'https://en.wikipedia.org/wiki/List_of_mobile_network_operators_of_Europe' <br>
 americas = 'https://en.wikipedia.org/wiki/List_of_mobile_network_operators_of_the_Americas'
 
+This script is using Beautifulsoup. Pip install it and you're ready to go.
+
+> pip install beautifulsoup4
+
 # TO DO
 
-1. Clean the data scraped
-2. Add more outputs, currently just a .CSV file
-3. Create a web GUI (in Flask, a micro web framework written in Python) to easily search for operator info
+- [ ] Clean the data scraped
+- [ ] Add more outputs, currently just a .CSV file
+- [ ] Create a web GUI (in Flask, a micro web framework written in Python) to easily search for operator info
