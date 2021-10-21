@@ -1,10 +1,14 @@
 from bs4 import BeautifulSoup
 import requests
-import re
+import re, time
 
 def clean(t):
-	word1 = " ".join(re.findall("[a-zA-Z0-9\.]+", t))
+	word1 = re.sub('\[[0-9]+\]', '', t)
+	word1 = " ".join(re.findall("[a-zA-Z0-9\.\%]+", word1))
 	return word1
+
+# Creating TS for unique file name
+ts = str(int(time.time()))
 
 apac = 'https://en.wikipedia.org/wiki/List_of_mobile_network_operators_of_the_Asia_Pacific_region'
 emea = 'https://en.wikipedia.org/wiki/List_of_mobile_network_operators_of_the_Middle_East_and_Africa'
@@ -36,10 +40,15 @@ for region in regions:
 				final_list.append([c] + temp)
 		except Exception as e:
 			pass
-
-with open('List_of_mobile_network_operators.csv', 'w') as wf:
+for i in final_list:
+	if len(i) > 2:
+		if i[4] == '' or i[4] == 'Not Yet Available' or i[4] == 'Not Available' or i[4] == 'N/A' or i[4] == '(Information not available)' or i[4] == '?' or i[4] == '-':
+			i[4] = 'NA'
+		print(i)
+with open(ts + '_List_of_mobile_network_operators.csv', 'w') as wf:
+	# Write headers
+	wf.write('Country;Rank;Operator;Technology;Subscribers;Owner\n')
 
 	for i in final_list:
 		if len(i) > 2:
-			wf.write(';'.join(i) + '\n')
-
+			wf.write(';'.join(i).encode('ascii', 'ignore').decode('ascii') + '\n')
