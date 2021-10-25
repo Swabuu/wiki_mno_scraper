@@ -13,6 +13,6 @@ This script is using Beautifulsoup. Pip install it and you're ready to go.
 
 # TO DO
 
-- [ ] Clean the data scraped
+- [x] Clean the data scraped
 - [ ] Add more outputs, currently just a .CSV file
 - [ ] Create a web GUI (in Flask, a micro web framework written in Python) to easily search for operator info
